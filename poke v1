@@ -1,0 +1,99 @@
+#mini projeto pessoal para aprender python do 0 
+#vou importar as bibliotecas necessárias aqui nesse bloco
+import random
+
+
+#vou criar 4 personagens (pokemon) e atribuir a eles seu atributo de ataque e hp
+
+torchic = {
+"name": "Torchic",
+"tipo": "Fogo",
+"ataque": 5,
+"hp": 6
+}
+
+mudkip = {
+"name": "Mudkip",
+"tipo": "Água",
+"ataque": 2,
+"hp": 10
+}
+
+treecko = {
+"name": "Treecko",
+"tipo": "Planta",
+"ataque": 3,
+"hp": 8
+}
+
+bagon = {
+"name": "Bagon",
+"tipo": "Dragon",
+"ataque": 2.5,
+"hp": 4
+}
+
+#lista para agrupar todos os 4
+
+pokemons = [torchic, mudkip, treecko, bagon]
+
+
+
+#menu para escolher o pokemon que o usuario quer usar
+print("\nEscolha um Pokemon para usar:")
+
+print("1 - Torchic")
+print("2 - Mudkip")
+print("3 - Treecko")
+print("4 - Bagon")
+
+escolha = input ("Digite o número do Pokemon escolhido: ")
+
+
+if escolha == "1":
+    pokemon_escolhido = torchic
+    print ("Seu Parceiro é o Torchic !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+elif escolha == "2":
+    pokemon_escolhido = mudkip
+    print ("Seu Parceiro é o Mudkip !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+elif escolha == "3":
+    pokemon_escolhido = treecko
+    print ("Seu Parceiro é o Treecko !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+elif escolha == "4":
+    pokemon_escolhido = bagon
+    print ("Seu Parceiro é o Bagon !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+else:
+    print ("Escolha inválida, tente um dos números de 1 a 4")
+
+#seleção de batalha onde o computador decide aleatóriamente entre os 3 que o usuario não decidiu para batalhar contra
+print ("\nAgora que você escolheu seu Pokemon, vamos para a batalha !")
+
+oponente = random.choice(pokemons)
+while oponente == pokemon_escolhido:
+    oponente = random.choice(pokemons)
+
+print ("Seu oponente é", oponente["name"])
+
+
+
+
