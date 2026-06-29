@@ -1,0 +1,176 @@
+#mini projeto pessoal para aprender python do 0 
+#vou importar as bibliotecas necessárias aqui nesse bloco
+import random
+
+
+#vou criar 4 personagens (pokemon) e atribuir a eles seu atributo de ataque e hp
+
+#Tabela de vantagens de tipo
+#Atacante	Defensor	Multiplicador
+#Fogo	     Planta	          2
+#Fogo	      Água	         0.5
+#Água	      Fogo	          2
+#Água	     Planta	         0.5
+#Planta	      Água	          2
+#Planta	      Fogo	         0.5
+#Dragão	    qualquer          1
+#Qualquer    Dragão          0.5
+
+
+torchic = {
+"name": "Torchic",
+"tipo": "Fogo",
+"resiste": ["Planta"],
+"fraco_contra": ["Água"],
+"ataque": 5,
+"hp": 6
+}
+
+mudkip = {
+"name": "Mudkip",
+"tipo": "Água",
+"resiste": ["Fogo"],
+"fraco_contra": ["Planta"],
+"ataque": 2,
+"hp": 10
+}
+
+treecko = {
+"name": "Treecko",
+"tipo": "Planta",
+"resiste": ["Água"],
+"fraco_contra": ["Fogo"],
+"ataque": 3,
+"hp": 8
+}
+
+bagon = {
+"name": "Bagon",
+"tipo": "Dragon",
+"resiste": ["Fogo", "Água", "Planta"],
+"fraco_contra": [],
+"ataque": 2.5,
+"hp": 4
+}
+
+#lista para agrupar todos os 4
+
+pokemons = [torchic, mudkip, treecko, bagon]
+
+
+
+
+#menu para escolher o pokemon que o usuario quer usar
+print("\nEscolha um Pokemon para usar:")
+
+print("1 - Torchic")
+print("2 - Mudkip")
+print("3 - Treecko")
+print("4 - Bagon")
+
+escolha = input ("Digite o número do Pokemon escolhido: ")
+
+while escolha not in ["1", "2", "3", "4"]:
+    print ("Escolha inválida, tente um dos números de 1 a 4")
+    escolha = input ("Digite o número do Pokemon escolhido: ")
+
+
+if escolha == "1":
+    pokemon_escolhido = torchic
+    print ("Seu Parceiro é o Torchic !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+elif escolha == "2":
+    pokemon_escolhido = mudkip
+    print ("Seu Parceiro é o Mudkip !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+elif escolha == "3":
+    pokemon_escolhido = treecko
+    print ("Seu Parceiro é o Treecko !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+elif escolha == "4":
+    pokemon_escolhido = bagon
+    print ("Seu Parceiro é o Bagon !")
+    print ("Seus atributos são: ")
+    print (f"  Nome: {pokemon_escolhido['name']}")
+    print (f"  Tipo: {pokemon_escolhido['tipo']}")
+    print (f"  Ataque: {pokemon_escolhido['ataque']}")
+    print (f"  HP: {pokemon_escolhido['hp']}")
+else:
+    print ("Escolha inválida, tente um dos números de 1 a 4")
+
+#seleção de batalha onde o computador decide aleatóriamente entre os 3 que o usuario não decidiu para batalhar contra
+print ("\nAgora que você escolheu seu Pokemon, vamos para a batalha !")
+
+oponente = random.choice(pokemons)
+while oponente == pokemon_escolhido:
+    oponente = random.choice(pokemons)
+
+
+#pequeno bloco para seleção de menu
+print ("Seu oponente é", oponente["name"])
+input ("Pressione Enter para continuar...")
+
+
+#estrutura do campo de batalha, mostrando os dois pokemons e seus atributos de hp
+print("====================")
+print("      BATALHA")
+print("====================")
+print()
+print (pokemon_escolhido["name"])
+print (f"HP: {pokemon_escolhido['hp']}")
+print()
+print()
+print("VS")
+print()
+print()
+print (oponente["name"])
+print (f"HP: {oponente['hp']}")
+print()
+print("====================")
+print()
+print ("1 - Atacar")
+print ("2 - Tentar Desviar")
+#estrutura referente a ação em batalha do usuario, onde ele decide se quer atacar ou desviar
+acao = input ("Escolha sua ação: ")
+while acao not in ["1", "2"]:
+    print ("Escolha inválida, tente 1 ou 2")
+    acao = input ("Escolha sua ação: ")
+
+if acao == "2":
+    sorte = random.randint(1, 100)
+
+    if sorte <= 50:
+        print(f"{pokemon_escolhido['name']} tentou desviar, mas falhou!")
+
+    elif sorte > 50:
+        print(f"{pokemon_escolhido['name']} conseguiu desviar do ataque de {oponente['name']}!")
+
+elif acao == "1":
+    #calculo do dano
+    dano = pokemon_escolhido["ataque"]
+    if pokemon_escolhido["tipo"] in oponente["resiste"]:
+        dano /=2
+        print(f"{oponente['name']} resistiu ao ataque de {pokemon_escolhido['name']}!")
+
+    elif pokemon_escolhido["tipo"] in oponente["fraco_contra"]:
+        dano *=2
+        print(f"O Golpe foi Super Efetivo! {oponente['name']} sofreu o dobro de dano!")
+    else:
+        print(f"{pokemon_escolhido['name']} atacou {oponente['name']}!")               
+
+
+
+
+    
